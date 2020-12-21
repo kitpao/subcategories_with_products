@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 
   def index
-    @randoms = display_random_products_from_branch_categories(Category.find(4), 4)
+    @main_category = Category.find(14)
+    @n_number = 3
+    @randoms = display_random_products_from_branch_categories(@main_category, @n_number)
   end
 
   def display_random_products_from_branch_categories(category, n)
