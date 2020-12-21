@@ -1,2 +1,0 @@
-class SelfJoin < ApplicationRecord
-end
