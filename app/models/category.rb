@@ -10,7 +10,7 @@ class Category < ApplicationRecord
     category = self
     if category.child_count == 0
       result << category.id
-      return
+      return result
     else
       category.children.each do |subcat|
         subcat.lowest_level_categories_ids(result)

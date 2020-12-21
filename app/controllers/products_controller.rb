@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    @random = display_random_products_from_branch_categories(Category.find(4), 3)
+    @randoms = display_random_products_from_branch_categories(Category.find(4), 4)
   end
 
   def display_random_products_from_branch_categories(category, n)
@@ -10,12 +10,12 @@ class ProductsController < ApplicationController
     # retrieve all the leaf categories objects with their cache for products
     cats = Category.includes(:products).find(leaf_cats)
     # Take the products of all subcategories
-    all_products = []
-    
+    all_subproducts = []
     cats.each do |cat|
-      all_products << cat.products
+      all_subproducts << cat.products.ids
     end
+    all_subproducts.flatten!
     # Show n number of random products
-    all_products.flatten.ordered_randomly(n)
+    Product.get_subproducts(all_subproducts).ordered_randomly(n)
   end
 end
