@@ -21,3 +21,5 @@ class ProductsController < ApplicationController
     Product.get_subproducts(all_subproducts).ordered_randomly(n)
   end
 end
+
+# this is just a test
